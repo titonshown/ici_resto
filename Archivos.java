@@ -54,7 +54,7 @@ public class Archivos {
             int capacidad = mesa.getCapacidad();
             String estado = mesa.getEstado();
             int consumo = mesa.getConsumo();
-            contenido = contenido+"Mesa "+(i+1)+";"+capacidad+";"+estado+";"+consumo+espacio;         
+            contenido = contenido+"-Mesa "+(i+1)+";"+capacidad+";"+estado+";"+consumo+espacio;         
         }
         Path archivo = Paths.get("D:\\mesas.txt");
         try{
@@ -64,6 +64,42 @@ public class Archivos {
             System.out.println("Error al intentar crear el archivo");
         }
         
+    }
+    
+    public void setDato(String tipoDato,String dato,int mesa){
+        String contenido = leerArchivo();
+        if(tipoDato.equals("capacidad")){
+            int pos = contenido.indexOf("Mesa "+mesa+";")+7;
+            int pos2 = contenido.indexOf(";", pos+1);
+            contenido = contenido.substring(0, pos)+dato+contenido.substring(pos2);
+            System.out.println("Capacidad de la Mesa "+mesa+" ahora es: "+dato);
+        }
+        Path archivo = Paths.get("D:\\mesas.txt");
+        try{
+            Files.write(archivo, contenido.getBytes());
+        }catch(IOException e){
+            System.out.println("Error al intentar crear el archivo");
+        }
+        
+    }
+    
+    public void mostrarDatos(){
+        System.out.println("Numero de Mesa\tCapacidad\tEstado\tConsumo\n");
+        String contenido = leerArchivo();
+        String[] mesas = contenido.split("-");
+        //i parte en 1 ya que el primer elemento de la lista seria el "Mesas:"
+        for(int i=1;i<mesas.length;i++){
+            String[] propiedades = mesas[i].split(";");
+            System.out.println(propiedades[0]+"\t\t"+propiedades[1]+"\t\t"+propiedades[2]+"\t"+propiedades[3]);
+        }
+        
+    }
+    
+    public int getTotalMesas(){
+        String contenido = leerArchivo();
+        String[] mesas = contenido.split("-");
+        int total = mesas.length-1;
+        return total;
     }
     
     public boolean esPrimeraVez(){
