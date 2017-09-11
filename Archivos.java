@@ -68,11 +68,19 @@ public class Archivos {
     
     public void setDato(String tipoDato,String dato,int mesa){
         String contenido = leerArchivo();
-        if(tipoDato.equals("capacidad")){
-            int pos = contenido.indexOf("Mesa "+mesa+";")+7;
-            int pos2 = contenido.indexOf(";", pos+1);
-            contenido = contenido.substring(0, pos)+dato+contenido.substring(pos2);
+        int pos = contenido.indexOf("Mesa "+mesa+";");
+        int pos2 = contenido.indexOf("\n",pos+1);
+        String linea = contenido.substring(pos, pos2);
+        String[] separados = linea.split(";");
+        if(tipoDato.equals("capacidad")){           
+            contenido = contenido.substring(0, pos)+separados[0]+";"+dato+";"+separados[2]+";"+separados[3]+contenido.substring(pos2);
             System.out.println("Capacidad de la Mesa "+mesa+" ahora es: "+dato);
+        }else if(tipoDato.equals("estado")){
+            contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+dato+";"+separados[3]+contenido.substring(pos2);
+            System.out.println("Estado de la Mesa "+mesa+" ahora es: "+dato);
+        }else if(tipoDato.equals("consumo")){
+            contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+separados[2]+";"+dato+contenido.substring(pos2);
+            System.out.println("Consumo de la Mesa "+mesa+" ahora es: "+dato);
         }
         Path archivo = Paths.get("D:\\mesas.txt");
         try{
