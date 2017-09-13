@@ -1,17 +1,20 @@
 
 package iciresto;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 
 public class ICIResto {
 
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         //Ventana v = new Ventana();
         //v.setVisible(true);
-
-        Administracion a = new Administracion();
-        a.configurarMesas();
+       
+        Menu menu = new Menu();
+        menu.inicio();
+        menu.opciones();
     }
     
 }
+    
+
