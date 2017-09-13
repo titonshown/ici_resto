@@ -11,17 +11,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
+
 public class Archivos {
+   private Path archivo;
+   
+   public Path getRuta(){
+   archivo = Paths.get("mesas.txt");
+   return archivo;
+           }
+   
     public String leerArchivo(){
-        String ruta = "D:\\mesas.txt";
-        Path archivo = Paths.get(ruta);
-        String texto = "";
+        String texto;
         try{
-            texto = new String(Files.readAllBytes(archivo));
+            texto = new String(Files.readAllBytes(getRuta()));
         }
         catch(IOException e){
             System.err.println("Ha ocurrido un error al intentar leer el archivo.");
@@ -31,16 +33,14 @@ public class Archivos {
     }
     
     public void crearArchivoMesas(){
-        String ruta = "D:\\mesas.txt";
-        Path archivo = Paths.get(ruta);
-        try{
-            if(Files.notExists(archivo)){
+       
+        try{            
                 String texto = "Mesas:";
-                Files.write(archivo, texto.getBytes());
-                int pos = ruta.lastIndexOf("/");
-                String nombre = ruta.substring(pos+1,ruta.length());
-                System.out.println("Archivo creado correctamente con el nombre: "+ nombre); 
-            }
+                Files.write(getRuta(), texto.getBytes());
+                //int pos = ruta.lastIndexOf("/");
+               // String nombre = ruta.substring(pos+1,ruta.length());
+                System.out.println("Archivo creado correctamente"); 
+            
         }catch(IOException e){
             System.out.println("Error al intentar crear el archivo");
         }     
@@ -56,9 +56,9 @@ public class Archivos {
             int consumo = mesa.getConsumo();
             contenido = contenido+"-Mesa "+(i+1)+";"+capacidad+";"+estado+";"+consumo+espacio;         
         }
-        Path archivo = Paths.get("D:\\mesas.txt");
+        
         try{
-            Files.write(archivo, contenido.getBytes());
+            Files.write(getRuta(), contenido.getBytes());
             System.out.println("Archivo guardado correctamente");
         }catch(IOException e){
             System.out.println("Error al intentar crear el archivo");
@@ -72,19 +72,24 @@ public class Archivos {
         int pos2 = contenido.indexOf("\n",pos+1);
         String linea = contenido.substring(pos, pos2);
         String[] separados = linea.split(";");
-        if(tipoDato.equals("capacidad")){           
-            contenido = contenido.substring(0, pos)+separados[0]+";"+dato+";"+separados[2]+";"+separados[3]+contenido.substring(pos2);
-            System.out.println("Capacidad de la Mesa "+mesa+" ahora es: "+dato);
-        }else if(tipoDato.equals("estado")){
-            contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+dato+";"+separados[3]+contenido.substring(pos2);
-            System.out.println("Estado de la Mesa "+mesa+" ahora es: "+dato);
-        }else if(tipoDato.equals("consumo")){
-            contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+separados[2]+";"+dato+contenido.substring(pos2);
-            System.out.println("Consumo de la Mesa "+mesa+" ahora es: "+dato);
-        }
-        Path archivo = Paths.get("D:\\mesas.txt");
-        try{
-            Files.write(archivo, contenido.getBytes());
+       switch (tipoDato) {
+           case "capacidad":
+               contenido = contenido.substring(0, pos)+separados[0]+";"+dato+";"+separados[2]+";"+separados[3]+contenido.substring(pos2);
+               System.out.println("Capacidad de la Mesa "+mesa+" ahora es: "+dato);
+               break;
+           case "estado":
+               contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+dato+";"+separados[3]+contenido.substring(pos2);
+               System.out.println("Estado de la Mesa "+mesa+" ahora es: "+dato);
+               break;
+           case "consumo":
+               contenido = contenido.substring(0, pos)+separados[0]+";"+separados[1]+";"+separados[2]+";"+dato+contenido.substring(pos2);
+               System.out.println("Consumo de la Mesa "+mesa+" ahora es: "+dato);
+               break;
+           default:
+               break;
+       }
+                try{
+            Files.write(getRuta(), contenido.getBytes());
         }catch(IOException e){
             System.out.println("Error al intentar crear el archivo");
         }
@@ -111,12 +116,7 @@ public class Archivos {
     }
     
     public boolean esPrimeraVez(){
-        String ruta = "D:\\mesas.txt";
-        Path archivo = Paths.get(ruta);
-        if(Files.notExists(archivo)){
-            return true;  
-        }else{
-            return false;
-        }
+        
+        return Files.notExists(getRuta());
     }
 }
