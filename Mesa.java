@@ -15,13 +15,19 @@ public class Mesa {
 	private String estado;
 	private int capacidad;
 	private int consumo;
+	private int numero;
 
-	public Mesa(int capacidad, String estado, int consumo) {
+	public Mesa(int numero, int capacidad, String estado, int consumo) {
+		this.numero=numero;
 		this.capacidad = capacidad;
 		this.estado = estado;
 		this.consumo = consumo;
 	}
 
+	public int getNumero(){
+		return this.numero;
+	}
+	
 	public int getCapacidad() {
 		return this.capacidad;
 	}
@@ -32,6 +38,10 @@ public class Mesa {
 
 	public int getConsumo() {
 		return this.consumo;
+	}
+	
+	public void setNumero(int num){
+		this.numero=num;
 	}
 
 	public void setEstado(String est) {

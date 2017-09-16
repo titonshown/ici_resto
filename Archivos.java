@@ -78,18 +78,18 @@ public class Archivos {
 		agregarTexto(contenido);
 	}
 
-	public void mostrarDatos() {
-		System.out.println("Numero de Mesa\tCapacidad\tEstado\tConsumo\n");
-		String contenido = leerArchivo();
-		String[] mesas = contenido.split("-");
-		// i parte en 1 ya que el primer elemento de la lista seria el "Mesas:"
-		for (int i = 1; i < mesas.length; i++) {
-			String[] propiedades = mesas[i].split(";");
-			System.out.println(
-					propiedades[0] + "\t\t" + propiedades[1] + "\t\t" + propiedades[2] + "\t" + propiedades[3]);
-		}
+	public void mostrarDatos(){
+        System.out.println("Numero de Mesa\tCapacidad\tEstado\tConsumo\n");
+        String contenido = leerArchivo();
+        String[] mesas = contenido.split("-");
+        //i parte en 1 ya que el primer elemento de la lista seria el "Mesas:"
+        for(int i=1;i<mesas.length;i++){
+            String[] propiedades = mesas[i].split(";");
+            System.out.println(propiedades[0]+"\t\t"+propiedades[1]+"\t\t"+propiedades[2]+"\t"+propiedades[3]);
+        }
+        
+    }
 
-	}
 
 	public int getTotalMesas() {
 		String contenido = leerArchivo();
@@ -110,5 +110,19 @@ public class Archivos {
 		} catch (IOException e) {
 			System.out.println("Error al intentar crear el archivo");
 		}
+	}
+	
+	public ArrayList<Mesa> leerMesas(){
+		ArrayList<Mesa> listaMesas=new ArrayList<Mesa>();
+		String texto=leerArchivo();
+		String[] mesas = texto.split("-");
+		for(int i=1;i<mesas.length;i++){
+            String[] propiedades = mesas[i].split(";");
+            String[]aux=propiedades[0].split(" ");
+            propiedades[3]=propiedades[3].replaceAll("[\n\r]","");
+            Mesa mesa=new Mesa(Integer.parseInt(aux[1]),Integer.parseInt(propiedades[1]),propiedades[2],Integer.parseInt(propiedades[3]));
+            listaMesas.add(mesa);
+		}
+		return listaMesas;
 	}
 }
