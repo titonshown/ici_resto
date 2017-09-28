@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ici_resto;
 
 import java.io.IOException;
@@ -29,73 +24,13 @@ public class Archivos {
 		}
 		return texto;
 	}
-
-	public void crearArchivoMesas() {
-		String texto = "Mesas:";
-		agregarTexto(texto);
-		// int pos = ruta.lastIndexOf("/");
-		// String nombre = ruta.substring(pos+1,ruta.length());
-	}
 		
 	public void almacenarDatos(ArrayList<Mesa> mesas) {
-		String espacio = "\r\n";
-		String contenido = "Mesas:" + espacio;
+		String contenido = "Mesas:/n";
 		for (int i = 0; i < mesas.size(); i++) {
-			Mesa mesa = mesas.get(i);
-			int capacidad = mesa.getCapacidad();
-			String estado = mesa.getEstado();
-			int consumo = mesa.getConsumo();
-			contenido = contenido + "-Mesa " + (i + 1) + ";" + capacidad + ";" + estado + ";" + consumo + espacio;
+			contenido = contenido + "-Mesa "+mesas.get(i).getNumero()+";"+mesas.get(i).getCapacidad()+";"+mesas.get(i).getEstado()+";"+mesas.get(i).getConsumo()+"\n";
 		}
 		agregarTexto(contenido);
-	}
-
-	public void setDato(String tipoDato, String dato, int mesa) {
-		String contenido = leerArchivo();
-		int pos = contenido.indexOf("Mesa " + mesa + ";");
-		int pos2 = contenido.indexOf("\n", pos + 1);
-		String linea = contenido.substring(pos, pos2);
-		String[] separados = linea.split(";");
-		switch (tipoDato) {
-		case "capacidad":
-			contenido = contenido.substring(0, pos) + separados[0] + ";" + dato + ";" + separados[2] + ";"
-					+ separados[3] + contenido.substring(pos2);
-			System.out.println("Capacidad de la Mesa " + mesa + " ahora es: " + dato);
-			break;
-		case "estado":
-			contenido = contenido.substring(0, pos) + separados[0] + ";" + separados[1] + ";" + dato + ";"
-					+ separados[3] + contenido.substring(pos2);
-			System.out.println("Estado de la Mesa " + mesa + " ahora es: " + dato);
-			break;
-		case "consumo":
-			contenido = contenido.substring(0, pos) + separados[0] + ";" + separados[1] + ";" + separados[2] + ";"
-					+ dato + contenido.substring(pos2);
-			System.out.println("Consumo de la Mesa " + mesa + " ahora es: " + dato);
-			break;
-		default:
-			break;
-		}
-		agregarTexto(contenido);
-	}
-
-	public void mostrarDatos(){
-        System.out.println("Numero de Mesa\tCapacidad\tEstado\tConsumo\n");
-        String contenido = leerArchivo();
-        String[] mesas = contenido.split("-");
-        //i parte en 1 ya que el primer elemento de la lista seria el "Mesas:"
-        for(int i=1;i<mesas.length;i++){
-            String[] propiedades = mesas[i].split(";");
-            System.out.println(propiedades[0]+"\t\t"+propiedades[1]+"\t\t"+propiedades[2]+"\t"+propiedades[3]);
-        }
-        
-    }
-
-
-	public int getTotalMesas() {
-		String contenido = leerArchivo();
-		String[] mesas = contenido.split("-");
-		int total = mesas.length - 1;
-		return total;
 	}
 
 	public boolean esPrimeraVez() {
