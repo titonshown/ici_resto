@@ -26,9 +26,9 @@ public class Archivos {
 	}
 		
 	public void almacenarDatos(ArrayList<Mesa> mesas) {
-		String contenido = "Mesas:/n";
+		String contenido = "Mesas:\r\n";
 		for (int i = 0; i < mesas.size(); i++) {
-			contenido = contenido + "-Mesa "+mesas.get(i).getNumero()+";"+mesas.get(i).getCapacidad()+";"+mesas.get(i).getEstado()+";"+mesas.get(i).getConsumo()+"\n";
+			contenido = contenido + "-Mesa "+mesas.get(i).getNumero()+";"+mesas.get(i).getCapacidad()+";"+mesas.get(i).getEstado()+";"+mesas.get(i).getConsumo()+"\r\n";
 		}
 		agregarTexto(contenido);
 	}
@@ -54,7 +54,7 @@ public class Archivos {
 		for(int i=1;i<mesas.length;i++){
             String[] propiedades = mesas[i].split(";");
             String[]aux=propiedades[0].split(" ");
-            propiedades[3]=propiedades[3].replaceAll("[\n\r]","");
+            propiedades[3]=propiedades[3].replaceAll("[\r\n]","");
             Mesa mesa=new Mesa(Integer.parseInt(aux[1]),Integer.parseInt(propiedades[1]),propiedades[2],Integer.parseInt(propiedades[3]));
             listaMesas.add(mesa);
 		}
