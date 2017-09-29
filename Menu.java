@@ -92,6 +92,8 @@ public class Menu {
 			}while(consumo==-1);
 			adm.setConsumoMesa(numero, consumo);
 		}
+		Archivos misArchivos = new Archivos();
+		misArchivos.almacenarDatos(adm.getListaMesas());
 	}
 	
 	
