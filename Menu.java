@@ -1,13 +1,18 @@
-package ici_resto;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package iciresto;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-	Administracion adm;
+	private Administrador adm;
 
 	Menu(){
-		adm=new Administracion();
+		adm=new Administrador();
 		menu();
 	}
 
@@ -92,7 +97,7 @@ public class Menu {
 			}while(consumo==-1);
 			adm.setConsumoMesa(numero, consumo);
 		}
-		Archivos misArchivos = new Archivos();
+		Archivo misArchivos = new Archivo();
 		misArchivos.almacenarDatos(adm.getListaMesas());
 	}
 	
