@@ -18,7 +18,7 @@ public class Administrador {
 	private ArrayList<Mesa> listaMesas;
 
 	public Administrador(){
-                this.archivo = new Archivo();
+                this.archivo = new ArchivoMesas();
                 this.listaMesas = llenarMesa();
 		Utilidades misUtilidades=new Utilidades();
 		int totalMesas;
@@ -40,7 +40,7 @@ public class Administrador {
 		if (archivo.esPrimeraVez()) {
 			lista = new ArrayList<Mesa>();
 		} else {
-			lista = archivo.leerMesas();
+			lista = archivo.leer();
 		}
 		return lista;
 	}
@@ -56,8 +56,16 @@ public class Administrador {
 		}while(capacidad==-1);
 		miMesa.setCapacidad(capacidad);
 		listaMesas.add(miMesa);
-		archivo.almacenarDatos(listaMesas);
+		guardarContenido();
 	}
+        
+        public void guardarContenido(){
+            String contenido = "Mesas:\r\n";
+            for (int i = 0; i < listaMesas.size(); i++) {	
+                contenido = contenido + "-Mesa "+listaMesas.get(i).getNumero()+";"+listaMesas.get(i).getCapacidad()+";"+listaMesas.get(i).getEstado()+";"+listaMesas.get(i).getConsumo()+"\r\n";
+            }
+            archivo.agregarTexto(contenido);
+        }
 		
 	public void mostrarMesas(){
 		System.out.println("Mesas:\n\t\tCAPACIDAD\tESTADO\t\t\tCONSUMO");

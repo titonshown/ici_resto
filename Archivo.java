@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class Archivo {
+public abstract class Archivo {
 	private Path path;
 
         public Archivo(){
@@ -32,14 +32,6 @@ public class Archivo {
 		}
 		return texto;
 	}
-		
-	public void almacenarDatos(ArrayList<Mesa> mesas) {
-		String contenido = "Mesas:\r\n";
-		for (int i = 0; i < mesas.size(); i++) {
-			contenido = contenido + "-Mesa "+mesas.get(i).getNumero()+";"+mesas.get(i).getCapacidad()+";"+mesas.get(i).getEstado()+";"+mesas.get(i).getConsumo()+"\r\n";
-		}
-		agregarTexto(contenido);
-	}
 
 	public boolean esPrimeraVez() {
 
@@ -55,17 +47,5 @@ public class Archivo {
 		}
 	}
 	
-	public ArrayList<Mesa> leerMesas(){
-		ArrayList<Mesa> listaMesas=new ArrayList<Mesa>();
-		String texto=leerArchivo();
-		String[] mesas = texto.split("-");
-		for(int i=1;i<mesas.length;i++){
-                    String[] propiedades = mesas[i].split(";");
-                    String[]aux=propiedades[0].split(" ");
-                    propiedades[3]=propiedades[3].replaceAll("[\r\n]","");
-                    Mesa mesa=new Mesa(Integer.parseInt(aux[1]),Integer.parseInt(propiedades[1]),propiedades[2],Integer.parseInt(propiedades[3]));
-                    listaMesas.add(mesa);
-		}
-		return listaMesas;
-	}
+	public abstract ArrayList<Mesa> leer();
 }
