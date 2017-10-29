@@ -1,4 +1,3 @@
-*/
 package iciresto;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class ArchivoLog extends Archivo{
             listaUsuarios.add(usuarios[i]);
              }
         return listaUsuarios;
-}
+    }
 }
     
 
