@@ -15,7 +15,7 @@ public class Menu {
 		
         }
 
-	public void opciones() {
+	private void opciones() {
 
 		System.out.println("Seleccione una opcion");
 
@@ -67,7 +67,7 @@ public class Menu {
 		}while(opcion!=4);
 	}
 	
-	public void editarMesas(){
+	private void editarMesas(){
 		Utilidades misUtilidades = new Utilidades();
 		preguntarNumeroMesa();
 		int numero;
@@ -117,23 +117,23 @@ public class Menu {
 	
 	//PREGUNTAS (Solo por orden y para entender mejor el codigo de arriba)
 	
-	public void preguntarNumeroMesa(){
+	private void preguntarNumeroMesa(){
 		System.out.println("¿Que mesa desea editar?");
 	}
 	
-	public void preguntarAtributo(){
+	private void preguntarAtributo(){
 		System.out.println("¿Que atributo desea cambiar? (1.- Capacidad / 2.- Estado / 3.- Consumo");
 	}
 	
-	public void preguntarEstado(){
+	private void preguntarEstado(){
 		System.out.println("¿A que estado desea cambiar la mesa? (1.- NO HABILITADA / 2.- LIBRE / 3.- ASIGNADA / 4.- ATENDIDA / 5.- RESERVADA");
 	}
 	
-	public void preguntarCapacidad(){
+	private void preguntarCapacidad(){
 		System.out.println("Ingrese la nueva capacidad.");
 	}
 	
-	public void preguntarConsumo(){
+	private void preguntarConsumo(){
 		System.out.println("Ingrese el nuevo total de consumo para la mesa seleccionada.");
 	}	
 }
