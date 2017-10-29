@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package iciresto;
 
 import java.io.IOException;
@@ -14,8 +9,8 @@ import java.util.ArrayList;
 public abstract class Archivo {
 	private Path path;
 
-        public Archivo(){
-            this.path = Paths.get("D:\\mesas.txt");
+        public Archivo(String path){
+            this.path = Paths.get(path);
         }
         
 	public Path getRuta() {
@@ -41,11 +36,12 @@ public abstract class Archivo {
 	public void agregarTexto(String texto){
 		try {
 			Files.write(getRuta(), texto.getBytes());
+                         
 			System.out.println("Archivo guardado correctamente");
 		} catch (IOException e) {
 			System.out.println("Error al intentar crear el archivo");
 		}
 	}
 	
-	public abstract ArrayList<Mesa> leer();
+	public abstract ArrayList leer();
 }
