@@ -1,5 +1,6 @@
 package iciresto;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,15 +10,15 @@ import java.util.ArrayList;
 public abstract class Archivo {
 	private Path path;
 
-        public Archivo(String path){
+        protected Archivo(String path){
             this.path = Paths.get(path);
         }
         
-	public Path getRuta() {
+	protected Path getRuta() {
             return this.path;
 	}
 
-	public String leerArchivo() {
+	protected String leerArchivo() {
 		String texto;
 		try {
 			texto = new String(Files.readAllBytes(getRuta()));
@@ -28,12 +29,12 @@ public abstract class Archivo {
 		return texto;
 	}
 
-	public boolean esPrimeraVez() {
+	protected boolean esPrimeraVez() {
 
 		return Files.notExists(getRuta());
 	}
 	
-	public void agregarTexto(String texto){
+	protected void agregarTexto(String texto){
 		try {
 			Files.write(getRuta(), texto.getBytes());
                          
@@ -43,5 +44,5 @@ public abstract class Archivo {
 		}
 	}
 	
-	public abstract ArrayList leer();
+	protected abstract ArrayList leer();
 }
