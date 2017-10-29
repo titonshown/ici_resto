@@ -5,16 +5,15 @@
  */
 package iciresto;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 	private Administrador adm;
-
+        private Login lg;
 	Menu(){
 		adm=new Administrador();
-		menu();
-	}
+		
+        }
 
 	public void opciones() {
 
@@ -25,8 +24,22 @@ public class Menu {
 		System.out.println("3. Agregar Mesas");
 		System.out.println("4. Salir");
 	}
+        
+        public void login(){
+            Scanner sc = new Scanner(System.in);
+            String username;
+            String password;
+             do{
+                System.out.println("Ingrese su nombre de usuario:");
+                username = sc.next();
+                System.out.println("Ingrese su contraseña:");
+                 password = sc.next();
+                lg = new Login(username, password);
+            }while(lg.usuarioExiste()== false);
+            ejecutarMenu();
+        }
 
-	public void menu() {
+	private void ejecutarMenu() {
 		int opcion;
 		Utilidades misUtilidades = new Utilidades();
 		do {
