@@ -7,10 +7,6 @@ package iciresto;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
 public class ArchivoMesas extends Archivo{
 
     public ArchivoMesas() {
