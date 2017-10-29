@@ -12,8 +12,14 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class ArchivoMesas extends Archivo{
+
+    public ArchivoMesas() {
+        super("mesas.txt");
+    }  
+        
+    @Override
     public ArrayList<Mesa> leer(){
-	ArrayList<Mesa> listaMesas=new ArrayList<Mesa>();
+	ArrayList<Mesa> listaMesas = new ArrayList<>();
 	String texto=leerArchivo();
 	String[] mesas = texto.split("-");
 	for(int i=1;i<mesas.length;i++){
