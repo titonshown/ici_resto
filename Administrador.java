@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Usuario
  */
 public class Administrador {
-	private Archivo archivo;
+	private ArchivoMesas archivo;
 	private ArrayList<Mesa> listaMesas;
 
 	public Administrador(){
