@@ -11,19 +11,16 @@ public class Login {
         this.username = username;
         this.password = password;
     }
-    public boolean usuarioExiste(){
-        boolean existe = false;
+   public boolean usuarioExiste(){
         String usuario = this.username+";"+this.password;
      
         ArchivoLog archLog = new ArchivoLog();
         ArrayList<String> listaUsuarios = archLog.leer();
         for(int i=0; i<listaUsuarios.size(); i++){
-            
             if(usuario.equals(listaUsuarios.get(i))){
-                existe = true;                
+                return true;                
             }
         }
-        if (existe==false) System.out.println("El nombre de usuario y/o contraseña son incorrectos ");
-        return existe;
+        return false;
     }
 }
