@@ -31,8 +31,8 @@ public class VentanaMesas extends VentanaReferencial implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(x, y, 1024, 768);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLUE);
-		contentPane.setForeground(Color.RED);
+		contentPane.setBackground(new Color(128, 0, 0));
+		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
