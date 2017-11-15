@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import iciresto.Login;
@@ -19,10 +20,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class JDLogin extends JDialog implements ActionListener {
-
+	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField textField_1;
 	private JButton btnIngresar;
 	private Ventana ventanaPrincipal;
 
@@ -50,7 +51,7 @@ public class JDLogin extends JDialog implements ActionListener {
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
-			textField_1 = new JTextField();
+			textField_1 = new JPasswordField();
 			contentPanel.add(textField_1);
 			textField_1.setColumns(10);
 		}
@@ -72,7 +73,7 @@ public class JDLogin extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnIngresar) {
-			Login login = new Login(textField.getText(), textField_1.getText());
+			Login login = new Login(textField.getText(), String.copyValueOf(textField_1.getPassword()));
 			if (login.usuarioExiste()) {
 				VentanaMesas ventanaMesas = new VentanaMesas(ventanaPrincipal.getX(),ventanaPrincipal.getY());
 				ventanaMesas.setVisible(true);
